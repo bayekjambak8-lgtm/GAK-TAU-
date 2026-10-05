@@ -40,6 +40,8 @@ BgImage.ImageTransparency = 0.85
 BgImage.ScaleType = Enum.ScaleType.Crop
 BgImage.Parent = Frame
 BgImage.ZIndex = 0
+BgImage.Active = false
+
 
 local UICornerBg = Instance.new("UICorner")
 UICornerBg.CornerRadius = UDim.new(0, 12)
@@ -70,7 +72,7 @@ BtnX.TextColor3 = Color3.fromRGB(255, 255, 255)
 BtnX.TextScaled = true
 BtnX.Font = Enum.Font.GothamBold
 BtnX.Parent = Frame
-BtnX.ZIndex = 5
+BtnX.ZIndex = 10
 local cX = Instance.new("UICorner")
 cX.CornerRadius = UDim.new(0, 6)
 cX.Parent = BtnX
@@ -185,6 +187,7 @@ BtnClose.TextColor3 = Color3.fromRGB(255, 255, 255)
 BtnClose.TextScaled = true
 BtnClose.Font = Enum.Font.GothamBold
 BtnClose.Parent = Frame
+BtnClose.ZIndex = 10
 local cClose = Instance.new("UICorner")
 cClose.CornerRadius = UDim.new(0, 6)
 cClose.Parent = BtnClose
@@ -240,4 +243,9 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "GAKTAU GABUT HUB",
     Text = "Script berhasil dimuat!",
     Duration = 3
-})
+})-- Fix semua tombol
+for _, v in pairs(Frame:GetDescendants()) do
+    if v:IsA("TextButton") then
+        v.ZIndex = 10
+    end
+end
