@@ -71,7 +71,8 @@ BtnX.Font = Enum.Font.GothamBold
 BtnX.Parent = Frame
 local cX = Instance.new("UICorner")
 cX.CornerRadius = UDim.new(0, 6)
-cX.Parent = BtnXlocal Sub = Instance.new("TextLabel")
+cX.Parent = BtnX
+local Sub = Instance.new("TextLabel")
 Sub.Size = UDim2.new(1, 0, 0, 25)
 Sub.Position = UDim2.new(0, 0, 0, 55)
 Sub.BackgroundTransparency = 1
