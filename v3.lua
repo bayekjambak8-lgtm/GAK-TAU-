@@ -1,4 +1,4 @@
--- GAKTAU GABUT HUB v2 - Wide + Minimize
+-- GAKTAU GABUT HUB v3 - Full Fix
 local player = game.Players.LocalPlayer
 local char = player.Character or player.CharacterAdded:Wait()
 local humanoid = char:WaitForChild("Humanoid")
@@ -17,15 +17,17 @@ local speed = 50
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "GakTauGabutHub"
 ScreenGui.ResetOnSpawn = false
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
 local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 400, 0, 520)
+Frame.Size = UDim2.new(0, 350, 0, 480)
 Frame.Position = UDim2.new(0.5, -175, 0.5, -240)
 Frame.BackgroundColor3 = Color3.fromRGB(10, 10, 20)
 Frame.BorderSizePixel = 0
 Frame.Active = true
 Frame.Draggable = true
+Frame.ZIndex = 1
 Frame.Parent = ScreenGui
 
 local UICorner = Instance.new("UICorner")
@@ -38,10 +40,9 @@ BgImage.BackgroundTransparency = 1
 BgImage.Image = "rbxassetid://95222951382845"
 BgImage.ImageTransparency = 0.85
 BgImage.ScaleType = Enum.ScaleType.Crop
-BgImage.Parent = Frame
 BgImage.ZIndex = 0
 BgImage.Active = false
-
+BgImage.Parent = Frame
 
 local UICornerBg = Instance.new("UICorner")
 UICornerBg.CornerRadius = UDim.new(0, 12)
@@ -51,17 +52,17 @@ local Judul = Instance.new("TextLabel")
 Judul.Size = UDim2.new(1, 0, 0, 55)
 Judul.BackgroundColor3 = Color3.fromRGB(0, 100, 255)
 Judul.BorderSizePixel = 0
-Judul.Text = "👑 GAKTAU GABUT"
+Judul.Text = "👑 GAKTAU"
 Judul.TextColor3 = Color3.fromRGB(255, 255, 255)
 Judul.TextScaled = true
 Judul.Font = Enum.Font.GothamBold
+Judul.ZIndex = 2
 Judul.Parent = Frame
 
 local UICorner2 = Instance.new("UICorner")
 UICorner2.CornerRadius = UDim.new(0, 12)
 UICorner2.Parent = Judul
 
--- Tombol X (tutup)
 local BtnX = Instance.new("TextButton")
 BtnX.Size = UDim2.new(0, 35, 0, 35)
 BtnX.Position = UDim2.new(1, -45, 0, 10)
@@ -71,11 +72,13 @@ BtnX.Text = "X"
 BtnX.TextColor3 = Color3.fromRGB(255, 255, 255)
 BtnX.TextScaled = true
 BtnX.Font = Enum.Font.GothamBold
-BtnX.Parent = Frame
 BtnX.ZIndex = 10
+BtnX.Parent = Frame
+
 local cX = Instance.new("UICorner")
 cX.CornerRadius = UDim.new(0, 6)
 cX.Parent = BtnX
+
 local Sub = Instance.new("TextLabel")
 Sub.Size = UDim2.new(1, 0, 0, 25)
 Sub.Position = UDim2.new(0, 0, 0, 55)
@@ -84,6 +87,7 @@ Sub.Text = "by: Faizzz"
 Sub.TextColor3 = Color3.fromRGB(0, 150, 255)
 Sub.TextScaled = true
 Sub.Font = Enum.Font.Gotham
+Sub.ZIndex = 2
 Sub.Parent = Frame
 
 local function bikinTombol(nama, posY, callback)
@@ -96,6 +100,7 @@ local function bikinTombol(nama, posY, callback)
     btn.TextColor3 = Color3.fromRGB(255, 255, 255)
     btn.TextScaled = true
     btn.Font = Enum.Font.GothamBold
+    btn.ZIndex = 5
     btn.Parent = Frame
     local c = Instance.new("UICorner")
     c.CornerRadius = UDim.new(0, 6)
@@ -113,6 +118,7 @@ Kat1.TextColor3 = Color3.fromRGB(0, 150, 255)
 Kat1.TextScaled = true
 Kat1.Font = Enum.Font.GothamBold
 Kat1.TextXAlignment = Enum.TextXAlignment.Left
+Kat1.ZIndex = 2
 Kat1.Parent = Frame
 
 local BtnFly = bikinTombol("Fly: OFF", 110, function()
@@ -142,6 +148,7 @@ Kat2.TextColor3 = Color3.fromRGB(0, 150, 255)
 Kat2.TextScaled = true
 Kat2.Font = Enum.Font.GothamBold
 Kat2.TextXAlignment = Enum.TextXAlignment.Left
+Kat2.ZIndex = 2
 Kat2.Parent = Frame
 
 local BtnBright = bikinTombol("Fullbright: OFF", 250, function()
@@ -150,7 +157,9 @@ local BtnBright = bikinTombol("Fullbright: OFF", 250, function()
     BtnBright.BackgroundColor3 = fullbright and Color3.fromRGB(0, 100, 255) or Color3.fromRGB(20, 20, 40)
     Lighting.Brightness = fullbright and 3 or 1
     Lighting.ClockTime = fullbright and 12 or 14
-end)local Kat3 = Instance.new("TextLabel")
+end)
+
+local Kat3 = Instance.new("TextLabel")
 Kat3.Size = UDim2.new(0.9, 0, 0, 20)
 Kat3.Position = UDim2.new(0.05, 0, 0, 290)
 Kat3.BackgroundTransparency = 1
@@ -159,6 +168,7 @@ Kat3.TextColor3 = Color3.fromRGB(0, 150, 255)
 Kat3.TextScaled = true
 Kat3.Font = Enum.Font.GothamBold
 Kat3.TextXAlignment = Enum.TextXAlignment.Left
+Kat3.ZIndex = 2
 Kat3.Parent = Frame
 
 local BtnAFK = bikinTombol("Anti AFK: OFF", 315, function()
@@ -176,7 +186,6 @@ local BtnSpeed = bikinTombol("Speed: 50", 352, function()
     BtnSpeed.Text = "Speed: " .. speed
 end)
 
--- Tombol TUTUP (di dalam frame)
 local BtnClose = Instance.new("TextButton")
 BtnClose.Size = UDim2.new(0.9, 0, 0, 35)
 BtnClose.Position = UDim2.new(0.05, 0, 1, -45)
@@ -186,13 +195,13 @@ BtnClose.Text = "❌ TUTUP"
 BtnClose.TextColor3 = Color3.fromRGB(255, 255, 255)
 BtnClose.TextScaled = true
 BtnClose.Font = Enum.Font.GothamBold
-BtnClose.Parent = Frame
 BtnClose.ZIndex = 10
+BtnClose.Parent = Frame
+
 local cClose = Instance.new("UICorner")
 cClose.CornerRadius = UDim.new(0, 6)
 cClose.Parent = BtnClose
 
--- Tombol buka lagi (muncul kalau di-minimize)
 local BtnOpen = Instance.new("TextButton")
 BtnOpen.Size = UDim2.new(0, 60, 0, 60)
 BtnOpen.Position = UDim2.new(0, 20, 0.5, -30)
@@ -202,32 +211,28 @@ BtnOpen.Text = ""
 BtnOpen.TextTransparency = 1
 BtnOpen.Image = "rbxassetid://95222951382845"
 BtnOpen.ImageTransparency = 0
-BtnOpen.TextScaled = true
-BtnOpen.Font = Enum.Font.GothamBold
+BtnOpen.ZIndex = 10
 BtnOpen.Parent = ScreenGui
 BtnOpen.Visible = false
+
 local cOpen = Instance.new("UICorner")
 cOpen.CornerRadius = UDim.new(0, 30)
 cOpen.Parent = BtnOpen
 
--- Fungsi tombol X (hide)
 BtnX.MouseButton1Click:Connect(function()
     Frame.Visible = false
     BtnOpen.Visible = true
 end)
 
--- Fungsi tombol TUTUP (destroy)
 BtnClose.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
 end)
 
--- Fungsi tombol buka lagi
 BtnOpen.MouseButton1Click:Connect(function()
     Frame.Visible = true
     BtnOpen.Visible = false
 end)
 
--- Loop fitur
 RunService.Heartbeat:Connect(function()
     if not char or not char.Parent then return end
     if fly then hrp.Velocity = Vector3.new(0, 50, 0) end
@@ -243,9 +248,4 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "GAKTAU GABUT HUB",
     Text = "Script berhasil dimuat!",
     Duration = 3
-})-- Fix semua tombol
-for _, v in pairs(Frame:GetDescendants()) do
-    if v:IsA("TextButton") then
-        v.ZIndex = 10
-    end
-end
+})
