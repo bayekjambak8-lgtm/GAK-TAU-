@@ -39,6 +39,7 @@ BgImage.Image = "rbxassetid://95222951382845"
 BgImage.ImageTransparency = 0.85
 BgImage.ScaleType = Enum.ScaleType.Crop
 BgImage.Parent = Frame
+BgImage.ZIndex = 0
 
 local UICornerBg = Instance.new("UICorner")
 UICornerBg.CornerRadius = UDim.new(0, 12)
@@ -69,6 +70,7 @@ BtnX.TextColor3 = Color3.fromRGB(255, 255, 255)
 BtnX.TextScaled = true
 BtnX.Font = Enum.Font.GothamBold
 BtnX.Parent = Frame
+BtnX.ZIndex = 5
 local cX = Instance.new("UICorner")
 cX.CornerRadius = UDim.new(0, 6)
 cX.Parent = BtnX
